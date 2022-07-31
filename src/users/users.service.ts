@@ -15,12 +15,12 @@ export class UsersService {
     return await this.usersModule.create(createUserDto);
   }
 
-  findAll() {
-    return `This action returns all users`;
+  async findAll() {
+    return await this.usersModule.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findOne(id: number) {
+    return await this.usersModule.findById(id);
   }
 
   async update(id: number, updateUserDto: UpdateUserDto) {

@@ -15,12 +15,12 @@ export class ProfilesService {
     return await this.profileModule.create(createProfileDto);
   }
 
-  findAll() {
-    return `This action returns all profiles`;
+  async findAll() {
+    return await this.profileModule.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} profile`;
+  async findOne(id: number) {
+    return await this.profileModule.findById(id);
   }
 
   async update(id: number, updateProfileDto: UpdateProfileDto) {
