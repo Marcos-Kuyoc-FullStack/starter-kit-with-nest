@@ -1,6 +1,6 @@
 ## Description
 
-[Nest] Starter App Users,Auth,Profiles by Nest with TypeScript repository.
+[Nest] Starter KIT App Users,Auth,Profiles by Nest with TypeScript repository.
 
 ## Installation
 
