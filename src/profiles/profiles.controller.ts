@@ -34,19 +34,19 @@ export class ProfilesController {
 
   @UseGuards(JwtAuthGuard)
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.profilesService.findOne(+id);
+  findById(@Param('id') id: string) {
+    return this.profilesService.findById(id);
   }
 
   @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateProfileDto: UpdateProfileDto) {
-    return this.profilesService.update(+id, updateProfileDto);
+    return this.profilesService.update(id, updateProfileDto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.profilesService.remove(+id);
+    return this.profilesService.remove(id);
   }
 }

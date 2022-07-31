@@ -8,6 +8,7 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtStrategy } from './jwt.strategy';
 import { JWT_SECRET } from 'src/keys';
 import { Profiles, ProfilesSchema } from 'src/profiles/schemas/profiles.schema';
+import { UsersService } from 'src/users/users.service';
 
 @Module({
   imports: [
@@ -28,6 +29,6 @@ import { Profiles, ProfilesSchema } from 'src/profiles/schemas/profiles.schema';
     }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, JwtStrategy],
+  providers: [AuthService, JwtStrategy, UsersService],
 })
 export class AuthModule {}

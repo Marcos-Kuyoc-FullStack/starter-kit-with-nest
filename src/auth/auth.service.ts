@@ -1,16 +1,14 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Users, UsersDocument } from 'src/users/schema/users.schema';
 import { RegisterAuthDto } from './dto/register-auth.dto';
 import { hash, compare } from 'bcrypt';
 import { LoginAuthDto } from './dto/login-auth.dto';
 import { JwtService } from '@nestjs/jwt';
+import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class AuthService {
   constructor(
-    @InjectModel(Users.name) private usersModule: Model<UsersDocument>,
+    private userService: UsersService,
     private jwtService: JwtService,
   ) {}
 
@@ -19,12 +17,12 @@ export class AuthService {
     const plaintToHash = await hash(password, 10);
     registerAuthDto = { ...registerAuthDto, password: plaintToHash };
 
-    return await this.usersModule.create(registerAuthDto);
+    return await this.userService.create(registerAuthDto);
   }
 
   async login(loginAuthDto: LoginAuthDto) {
     const { email, password } = loginAuthDto;
-    const user = await this.usersModule.findOne({ email });
+    const user = await this.userService.findOne({ email });
 
     if (!user) throw new HttpException('USER_NOT_FOUNT', HttpStatus.NOT_FOUND);
 
