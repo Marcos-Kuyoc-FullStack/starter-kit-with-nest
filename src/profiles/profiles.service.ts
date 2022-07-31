@@ -1,11 +1,18 @@
 import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
+import { Profiles, ProfilesDocument } from './schemas/profiles.schema';
 
 @Injectable()
 export class ProfilesService {
-  create(createProfileDto: CreateProfileDto) {
-    return 'This action adds a new profile';
+  constructor(
+    @InjectModel(Profiles.name) private profileModule: Model<ProfilesDocument>,
+  ) {}
+
+  async create(createProfileDto: CreateProfileDto) {
+    return await this.profileModule.create(createProfileDto);
   }
 
   findAll() {
@@ -16,8 +23,8 @@ export class ProfilesService {
     return `This action returns a #${id} profile`;
   }
 
-  update(id: number, updateProfileDto: UpdateProfileDto) {
-    return `This action updates a #${id} profile`;
+  async update(id: number, updateProfileDto: UpdateProfileDto) {
+    return await this.profileModule.findByIdAndUpdate(id, updateProfileDto);
   }
 
   remove(id: number) {
