@@ -10,9 +10,10 @@ import {
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard, RolesGuard } from 'src/guards';
 import { Roles } from 'src/decorators/roles.decorator';
 import { Role } from 'src/decorators/role.enum';
+import { JwtAuthGuard } from 'src/guards/jwt-auth.guard';
+import { RolesGuard } from 'src/guards';
 
 @ApiBearerAuth()
 @ApiTags('users')

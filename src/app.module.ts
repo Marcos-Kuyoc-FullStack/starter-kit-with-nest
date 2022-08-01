@@ -10,7 +10,6 @@ import { ProfilesModule } from './profiles/profiles.module';
 import configuration from './config/configuration';
 import { RolesGuard } from './guards/roles.guard';
 import { APP_GUARD } from '@nestjs/core';
-import { JwtAuthGuard } from './guards';
 
 @Module({
   imports: [

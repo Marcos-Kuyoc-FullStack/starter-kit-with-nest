@@ -8,8 +8,8 @@ import { UsersService } from 'src/users/users.service';
 @Injectable()
 export class AuthService {
   constructor(
-    private userService: UsersService,
     private jwtService: JwtService,
+    private userService: UsersService,
   ) {}
 
   async register(registerAuthDto: RegisterAuthDto) {
