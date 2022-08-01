@@ -12,7 +12,9 @@ import { ProfilesService } from './profiles.service';
 import { CreateProfileDto } from './dto/create-profile.dto';
 import { UpdateProfileDto } from './dto/update-profile.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard, RolesGuard } from 'src/guards';
+import { Roles } from 'src/decorators';
+import { Role } from 'src/decorators/role.enum';
 
 @ApiBearerAuth()
 @ApiTags('profiles')
@@ -44,7 +46,8 @@ export class ProfilesController {
     return this.profilesService.update(id, updateProfileDto);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @Roles(Role.Admin)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.profilesService.remove(id);

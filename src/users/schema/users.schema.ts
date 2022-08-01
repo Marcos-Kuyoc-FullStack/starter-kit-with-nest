@@ -15,9 +15,9 @@ export class Users {
 
   @Prop({
     enum: {
-      values: ['admin', 'client'],
+      values: ['admin', 'user', 'client'],
       message: '{VALUE} no es un rol válido',
-      default: 'client',
+      default: 'user',
       required: true,
     },
   })
